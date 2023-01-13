@@ -1,28 +1,30 @@
 const startQuiz = document.querySelector('#start');
 let finalScore = document.querySelector('#final-score');
 let timer = document.querySelector('#time');
+let secondsLeft = 90;
 let startScreen = document.querySelector('#start-screen');
 let quizScreen = document.querySelector('#questions');
+let questionTitleEl = document.querySelector('#question-title');
+let choicesEl = document.querySelector('#choices');
 let questionIndex = 0;
-let currentQuestion = questions[questionIndex];
+let currentQuestion;
 
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
+// THEN a timer starts and I am presented with a question
 startQuiz.addEventListener('click', function(){
-    // THEN a timer starts and I am presented with a question
     startScreen.style.display = 'none';
     showQuestion();
     timerCount();
     
 });
-
-   
+  
 function showQuestion() {
+
+    choicesEl.innerHTML = '';
     
     quizScreen.style.display = 'block';
-    let questionTitleEl = document.querySelector('#question-title');
-    let choicesEl = document.querySelector('#choices');
-
+    currentQuestion = questions[questionIndex]
     questionTitleEl.textContent = currentQuestion.question;
     
     let choicesOL = document.createElement ("ol");
@@ -34,20 +36,26 @@ function showQuestion() {
         let choiceLI = document.createElement("li");
         choiceLI.textContent = `${choice}: ${answer}`;
         choicesOL.appendChild(choiceLI);
+        choiceLI.dataset.choice = choice; // assigns the key 'choice' to the answers    
     }
 }
 
-
 // WHEN I answer a question
 // THEN I am presented with another question
+choicesEl.addEventListener('click', function(event){
 
-// addEventListener click to choices list items so it calls showQuestion()
-// function rightAnswer();
-    // showQuestion();
- 
+    let choiceLI = event.target;
+    if (choiceLI.dataset.choice !== currentQuestion.correct) {
+        // WHEN I answer a question incorrectly
+        // THEN time is subtracted from the clock
+        secondsLeft -= 10;
+    }
 
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
+    questionIndex++;
+    showQuestion();
+
+});
+
 
 // function wrongAnswer();
     //deduct 10 secs
@@ -57,12 +65,11 @@ function showQuestion() {
 // function to start timer countdown
 function timerCount() {
     
-    let secondsLeft = 60;
     let countdown = setInterval(function() {
         secondsLeft--;
         timer.textContent = secondsLeft;
         
-        if(secondsLeft === 0) {
+        if(secondsLeft <= 0) {
             clearInterval(countdown);
         }
         
