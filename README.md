@@ -59,6 +59,7 @@ THEN I can save my initials and score
 ### Useful resources
 
 - [W3 Schools on addEventListener()](https://www.w3schools.com/jsref/met_element_addeventlistener.asp)
+- [MDN Web Docs on Object.entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
 
 ## Author
 
