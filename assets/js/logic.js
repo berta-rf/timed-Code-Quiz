@@ -1,5 +1,6 @@
 const startQuiz = document.querySelector('#start');
 let finalScore = document.querySelector('#final-score');
+let initials = document.querySelector('#initials');
 let timer = document.querySelector('#time');
 let countdown;
 let secondsLeft = 60;
@@ -10,6 +11,7 @@ let questionTitleEl = document.querySelector('#question-title');
 let choicesEl = document.querySelector('#choices');
 let questionIndex = 0;
 let currentQuestion;
+let submitBtn = document.querySelector('#submit');
 
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
@@ -58,6 +60,8 @@ choicesEl.addEventListener('click', function(event) {
     }
 
     if (questions.length === questionIndex + 1){
+        // WHEN all questions are answered 
+        // THEN the game is over
         endGame();
 
     } else {
@@ -82,21 +86,50 @@ function timerCount() {
         }
 
         if(secondsLeft <= 0) {
+        // WHEN the timer reaches 0
+        // THEN the game is over
             endGame();
         }
     
     }, 1000); 
 }
 
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
 function endGame() {
-    
+
     clearInterval(countdown);
     quizScreen.style.display = 'none';
     endScreen.style.display = 'block';
     finalScore.textContent = secondsLeft;
+}  
 
+// // WHEN the game is over
+// // THEN I can save my initials and score
+
+// Load old scores from localStorage
+if (!localStorage.getItem('highscores')) {
+    localStorage.setItem('highscores', JSON.stringify([]));
 }
-// WHEN the game is over
-// THEN I can save my initials and score
+
+let highscores = JSON.parse(localStorage.getItem('highscores'));
+
+submitBtn.addEventListener('click', function(){
+    
+    initials = initials.value;
+
+    // Add a new score object to the highscores array
+    highscores.push(
+        {
+        initials: initials,
+        score: secondsLeft,
+        }
+    );
+
+    localStorage.setItem('highscores', JSON.stringify(highscores));
+
+    // Clear the initials text input so it's empty next time
+    initials.value = '';
+    // Go to the Highscores page
+    location.href = './highscores.html';
+    
+});
+
