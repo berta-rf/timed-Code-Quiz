@@ -112,7 +112,16 @@ if (!localStorage.getItem('highscores')) {
 
 let highscores = JSON.parse(localStorage.getItem('highscores'));
 
-submitBtn.addEventListener('click', function(){
+// When you click 'Submit' after initials input
+submitBtn.addEventListener('click', submitScore);
+// When you press 'Enter' after initials input
+initials.addEventListener('keydown', function(e){
+    if (e.code === "Enter") {  // only if the key pressed is "Enter"
+        submitScore();
+    }
+});
+
+function submitScore() {
     
     initials = initials.value;
 
@@ -131,5 +140,5 @@ submitBtn.addEventListener('click', function(){
     // Go to the Highscores page
     location.href = './highscores.html';
     
-});
+}
 
