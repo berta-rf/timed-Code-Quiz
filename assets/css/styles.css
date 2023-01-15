@@ -1,5 +1,5 @@
 body {
-  font-family: Arial;
+  font-family: 'Roboto Mono', monospace;
   height: 100vh;
   background: linear-gradient(rgb(199, 205, 182), rgb(160, 178, 161), rgb(121, 151, 141), rgb(82, 125, 121), rgb(37, 100, 101));
 
@@ -66,7 +66,7 @@ ol {
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
 }
 
@@ -76,14 +76,8 @@ li {
   font-size: 20px;
 }
 
-.choices li:hover {
-  background-color: rgb(121, 151, 141);
-  cursor: pointer;
-}
-
 .wrapper {
   margin: 100px auto 0 auto;
-  max-width: 600px;
 }
 
 .hide {

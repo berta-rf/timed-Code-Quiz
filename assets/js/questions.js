@@ -47,23 +47,13 @@ var questions = [
         },
         correct: 'b',
 	},
-	{
-		question: 'What is the correct JavaScript syntax to change the content of this HTML element "<p id="demo">This is a demonstration`</p>"?',
-		choices: {
-            a: ' document.getElementByName("p").innerHTML = "Hello World!";',
-			b: ' #demo.innerHTML = "Hello World!";',
-			c: ' document.getElementById("demo").innerHTML = "Hello World!";',
-            d: ' document.getElement("p").innerHTML = "Hello World!";',
-        },
-        correct: 'c', 
-	},
     {
 		question: 'What is the correct way to write a JavaScript array?',
 		choices: {
-            a: 'var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")',
-			b: 'var colors = "red", "green", "blue"',
-			c: 'var colors = ["red", "green", "blue"]',
-            d: 'var colors = (1:"red", 2:"green", 3:"blue")',
+            a: 'var colors = 1=("red"), 2=("green")',
+			b: 'var colors = "red", "green"',
+			c: 'var colors = ["red", "green"]',
+            d: 'var colors = (1:"red", 2:"green")',
         },
         correct: 'c,'
 	},

@@ -13,6 +13,8 @@ let choicesEl = document.querySelector('#choices');
 let questionIndex = 0;
 let currentQuestion;
 let submitBtn = document.querySelector('#submit');
+let correctSound = new Audio('./assets/sfx/correct.wav')
+let wrongSound =new Audio('./assets/sfx/incorrect.wav');
 
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
@@ -31,25 +33,30 @@ function showQuestion() {
     currentQuestion = questions[questionIndex]
     questionTitleEl.textContent = currentQuestion.question;
     
-    let choicesOL = document.createElement ("ol");
+    let choicesOL = document.createElement ('ol');
     choicesEl.appendChild(choicesOL);
 
     // choice refers to the key (a, b, c or d) and answer is the value (text answer)
     for (const [choice, answer] of Object.entries(currentQuestion.choices)) {
       
-        let choiceLI = document.createElement("li");
-        choiceLI.textContent = `${choice}: ${answer}`;
+        let choiceLI = document.createElement('li');
+        let choiceBtn = document.createElement('button');
+        choiceBtn.textContent = `${choice}: ${answer}`;
+        choiceLI.appendChild(choiceBtn);
         choicesOL.appendChild(choiceLI);
-        choiceLI.dataset.choice = choice; // assigns a dataset with the key 'choice' to the answers    
+        choiceBtn.dataset.choice = choice; // assigns a dataset with the key 'choice' to the answers  button  
     }
 }
 
 // WHEN I answer a question
 // THEN I am presented with another question
 choicesEl.addEventListener('click', function(event) {
-
     let choiceLI = event.target;
+
     if (choiceLI.dataset.choice !== currentQuestion.correct) {
+        
+        // Plays wrong answer sound
+        wrongSound.play();
         // WHEN I answer a question incorrectly
         // THEN time is subtracted from the clock
         feedback.style.display = 'block';
@@ -63,6 +70,8 @@ choicesEl.addEventListener('click', function(event) {
     } else {
         feedback.style.display = 'block';
         feedback.textContent = "CORRECT!"
+        // Plays correct answer sound
+        correctSound.play();
     }
 
     if (questions.length === questionIndex + 1){
@@ -103,6 +112,7 @@ function timerCount() {
 function endGame() {
 
     clearInterval(countdown);
+    feedback.style.display = 'none';
     quizScreen.style.display = 'none';
     endScreen.style.display = 'block';
     finalScore.textContent = secondsLeft;
@@ -130,7 +140,8 @@ initials.addEventListener('keydown', function(e){
 
 function submitScore() {
     
-    if (initials.value == '') {
+    // Alerts the user to enter initials if they leave input blank or with spaces
+    if (initials.value.trim() == '') {
         alert('Please enter your initials');
     } else {
         initials = initials.value;

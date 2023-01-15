@@ -2,6 +2,8 @@ let clearBtn = document.querySelector('#clear');
 let scoresOL = document.querySelector('#highscores');
 let highscores = JSON.parse(localStorage.getItem('highscores'));
 
+// Sorts the highscores array from high to low by score key-value
+highscores.sort((a, b) => (a.score > b.score) ? -1 : 1);
 //  When the Highscores page is loaded, for each score on localStorage a list item will be created
 //(choice refers to the key (a, b, c or d) and answer is the value (text answer))
 for (i in highscores) {
