@@ -55,7 +55,7 @@ var questions = [
 			c: 'var colors = ["red", "green"]',
             d: 'var colors = (1:"red", 2:"green")',
         },
-        correct: 'c,'
+        correct: 'c',
 	},
 	{
 		question: 'Which event occurs when the user clicks on an HTML element?',

@@ -24,10 +24,10 @@ This application is a timed coding quiz with multiple-choice questions. This app
 GIVEN I am taking a code quiz
 WHEN I click the start button
 THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
+WHEN I answer a question (I get correct/wrong answer feedback in text and sound form)
 WHEN I answer a question incorrectly
 THEN time is subtracted from the clock
+THEN I am presented with another question
 WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
@@ -41,7 +41,7 @@ THEN I can save my initials and score
 
 ### Screenshot
 
-![](./screenshot)
+![](./assets/images/applicationScreenshots.gif)
 
 ### Links
 
@@ -55,11 +55,13 @@ THEN I can save my initials and score
 - JavaScript
 - HTML
 - CSS
+- Bootstrap 5.2
 
 ### Useful resources
 
 - [W3 Schools on addEventListener()](https://www.w3schools.com/jsref/met_element_addeventlistener.asp)
 - [MDN Web Docs on Object.entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
+- [Adding sound to JS Web Apps](https://noaheakin.medium.com/adding-sound-to-your-js-web-app-f6a0ca728984)
 
 ## Author
 
