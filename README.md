@@ -1,7 +1,5 @@
 # Code Quiz
 
-# Password Generator
-
 <a href="https://github.com/berta-rf/timed-Code-Quiz/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/berta-rf/timed-Code-Quiz?style=for-the-badge"></a>
 
 ## Table of contents
